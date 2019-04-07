@@ -4,7 +4,7 @@ use fx_mobile_crawler_db;
 
 create table frequencies (
   frequencyId int auto_increment not null primary key,
-  frequencyPeriod varchar(10)
+  frequencyPeriod varchar(100)
 );
 
 create table users (
@@ -31,10 +31,10 @@ grant all privileges on fx_mobile_crawler_db.* to 'fxm_user'@'localhost';
 flush privileges;
 
 insert into frequencies(frequencyPeriod)
-value ('daily');
+value ('Daily');
 insert into frequencies(frequencyPeriod)
-  value ('weekly');
+  value ('Weekly');
 insert into frequencies(frequencyPeriod)
-  value ('monthly');
+  value ('Monthly');
 insert into frequencies(frequencyPeriod)
-  value ('uncapped');
+  value ('Always send the best available deals(Uncapped)');

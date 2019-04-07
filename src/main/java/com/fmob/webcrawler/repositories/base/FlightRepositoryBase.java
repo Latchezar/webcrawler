@@ -14,5 +14,5 @@ public interface FlightRepositoryBase<T> {
 
     T getByLowestPriceForOriginAndDestination(String origin, String destination);
 
-    
+
 }
