@@ -19,16 +19,16 @@ public class FrequencyService implements FrequencyServiceBase {
 
     @Override
     public List<Frequency> getAll() {
-        return null;
+        return this.repository.getAll();
     }
 
     @Override
     public Frequency getById(int id) {
-        return null;
+        return this.repository.getById(id);
     }
 
     @Override
-    public Frequency getByName(int id) {
-        return null;
+    public Frequency getByName(String name) {
+        return this.repository.getByName(name);
     }
 }

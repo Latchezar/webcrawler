@@ -10,5 +10,5 @@ public interface FrequencyServiceBase {
 
     Frequency getById(int id);
 
-    Frequency getByName(int id);
+    Frequency getByName(String name);
 }
