@@ -24,8 +24,9 @@ function userFormSubmit(){
         contentType: "application/json; charset=utf-8",
         dataType: "text",
         success: function (data, status, xhttp) {
-            console.log(data);
-            console.log(status);
+            if (data === 'Failed: could not execute statement') {
+                alert('Failed: Either the email exists or is invalid!')
+            }
             if (data === "Success"){
                 successfulSubmittion(emailInput);
             }
