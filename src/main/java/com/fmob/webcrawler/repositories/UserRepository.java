@@ -8,6 +8,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -40,7 +45,23 @@ public class UserRepository<T> implements UserRepositoryBase<T> {
 
     @Override
     public List<T> getAllByOriginAndDestination(String origin, String destination) {
-        return null;
+        Session session = sessionFactory.openSession();
+        try {
+            session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<User> criteria = builder.createQuery(User.class);
+            Root<User> root = criteria.from(User.class);
+            Predicate originPredicate = builder.equal(root.get("origin"), origin);
+            Predicate destinationPredicate = builder.equal(root.get("destination"), destination);
+            criteria.select(root).where(builder.and(originPredicate, destinationPredicate));
+            List result = session.createQuery(criteria).getResultList();
+            session.getTransaction().commit();
+            session.close();
+            return result;
+        } catch (HibernateException e) {
+            System.out.println( "Failed: " + e.getMessage());
+            return new ArrayList<>();
+        }
     }
 
     @Override
