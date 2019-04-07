@@ -66,6 +66,26 @@ public class UserRepository<T> implements UserRepositoryBase<T> {
 
     @Override
     public void confirmUser(T user) {
+        if (user instanceof User) {
+            User userToUpdate = (User) user;
+            if (userToUpdate.isConfirmed()){
+                Session session = sessionFactory.openSession();
+                try {
+                    session.beginTransaction();
+                    session.update(userToUpdate);
+                    session.getTransaction().commit();
+                    session.close();
+                } catch (HibernateException e){
+                    System.out.println(e.toString());
+                }
+            }
+        }
+        System.out.println("Incompatible object");
+    }
 
+    @Override
+    public T getUserByEmail(String email) {
+        
+        return null;
     }
 }

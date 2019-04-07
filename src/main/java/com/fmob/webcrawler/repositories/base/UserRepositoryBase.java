@@ -9,4 +9,6 @@ public interface UserRepositoryBase<T> {
     List<T> getAllByOriginAndDestination(String origin, String destination);
 
     void confirmUser(T user);
+
+    T getUserByEmail(String email);
 }
