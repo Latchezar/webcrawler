@@ -2,6 +2,7 @@ package com.fmob.webcrawler.repositories;
 
 import com.fmob.webcrawler.models.User;
 import com.fmob.webcrawler.repositories.base.UserRepositoryBase;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -85,7 +86,23 @@ public class UserRepository<T> implements UserRepositoryBase<T> {
 
     @Override
     public T getUserByEmail(String email) {
-        
+        Session session = sessionFactory.openSession();
+        try {
+            session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<User> criteria = builder.createQuery(User.class);
+            Root<User> root = criteria.from(User.class);
+            criteria.select(root).where(builder.equal(root.get("email"), email));
+            User user = session.createQuery(criteria).getSingleResult();
+            session.getTransaction().commit();
+            session.close();
+            return (T) user;
+//            alternative. Might throw exception if the list is empty
+//            List<User> users = session.createQuery(criteria).getResultList();
+//            return (T) users.get(0);
+        } catch (HibernateException e) {
+            System.out.println(e.toString());
+        }
         return null;
     }
 }
