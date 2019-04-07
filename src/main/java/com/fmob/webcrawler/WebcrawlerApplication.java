@@ -1,5 +1,8 @@
 package com.fmob.webcrawler;
 
+import com.fmob.webcrawler.models.Flight;
+import com.fmob.webcrawler.models.Frequency;
+import com.fmob.webcrawler.models.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.boot.SpringApplication;
@@ -17,7 +20,9 @@ public class WebcrawlerApplication {
     public SessionFactory sessionFactory(){
         return new Configuration()
                 .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(User.class)
+                .addAnnotatedClass(Flight.class)
+                .addAnnotatedClass(Frequency.class)
                 .buildSessionFactory();
     }
-
 }
