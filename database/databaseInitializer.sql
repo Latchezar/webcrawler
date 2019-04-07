@@ -13,6 +13,7 @@ create table users (
     origin varchar(100),
     destination varchar(100),
     frequencyID int,
+    confirmed tinyint(1) default 0,
     foreign key (frequencyID) references frequencies(frequencyId)
 );
 

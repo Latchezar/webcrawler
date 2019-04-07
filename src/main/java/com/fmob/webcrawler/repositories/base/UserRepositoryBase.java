@@ -1,4 +1,11 @@
 package com.fmob.webcrawler.repositories.base;
 
-public interface UserRepositoryBase {
+import java.util.List;
+
+public interface UserRepositoryBase<T> {
+
+    String saveNew(T user);
+
+    List<T> getAllByOriginAndDestination(String origin, String destination);
+
 }
