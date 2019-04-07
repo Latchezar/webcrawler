@@ -19,5 +19,8 @@ dependencies {
     //hibernate and mysql
     compile group: 'org.hibernate', name: 'hibernate-gradle-plugin', version: '5.4.2.Final'
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
+    //thymeleaf as template resolver
+    compile group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.11.RELEASE'
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 
 }
