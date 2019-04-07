@@ -34,7 +34,25 @@ function userFormSubmit(){
     });
 }
 
+function populateFrequencySelection(frequencies){
+    let list = $("#frequencySelect");
+    frequencies.forEach(function (frequency) {
+       let option = $("<option>");
+       option.attr("value", frequency.frequencyId);
+       option.text(frequency.frequencyPeriod);
+       list.append(option);
+    });
+}
+
+function callFrequencyListForPopulation(){
+    let url = "/api/frequency/all";
+    $j.get(url, function (data) {
+       populateFrequencySelection(data);
+    });
+}
+
 $(document).ready(function () {
+    callFrequencyListForPopulation();
    $("#userSubmitionForm").submit(function (e) {
       e.preventDefault();
       userFormSubmit();
