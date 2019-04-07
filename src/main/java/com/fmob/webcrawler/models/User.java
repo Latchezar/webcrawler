@@ -22,6 +22,10 @@ public class User {
     @Column(name = "destination")
     private String destination;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "frequencyId", referencedColumnName = "frequencyID")
+    private Frequency frequency;
+
     public int getUserID() {
         return userID;
     }
@@ -52,5 +56,13 @@ public class User {
 
     public void setDestination(String destination) {
         this.destination = destination;
+    }
+
+    public Frequency getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(Frequency frequency) {
+        this.frequency = frequency;
     }
 }
