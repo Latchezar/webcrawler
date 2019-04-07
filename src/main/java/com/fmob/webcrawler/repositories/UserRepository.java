@@ -79,8 +79,9 @@ public class UserRepository<T> implements UserRepositoryBase<T> {
                     System.out.println(e.toString());
                 }
             }
+        } else {
+            System.out.println("Incompatible object");
         }
-        System.out.println("Incompatible object");
     }
 
     @Override
