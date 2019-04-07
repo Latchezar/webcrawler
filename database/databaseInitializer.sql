@@ -9,7 +9,7 @@ create table frequencies (
 
 create table users (
     userId int auto_increment not null primary key,
-    email varchar(100) not null,
+    email varchar(100) not null unique,
     origin varchar(100),
     destination varchar(100),
     frequencyID int,
