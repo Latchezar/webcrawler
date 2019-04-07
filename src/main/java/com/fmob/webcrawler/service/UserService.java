@@ -19,16 +19,20 @@ public class UserService implements UserServiceBase {
 
     @Override
     public String saveNew(User user) {
-        return null;
+        return this.userRepository.saveNew(user);
     }
 
     @Override
     public List<User> getAllByOriginAndDestination(String origin, String destination) {
-        return null;
+        return this.userRepository.getAllByOriginAndDestination(origin, destination);
     }
 
     @Override
-    public void confirmUser(User user) {
-
+    public void confirmUser(String email) {
+        User user = this.userRepository.getUserByEmail(email);
+        if (!user.isConfirmed()) {
+            user.setConfirmed(true);
+        }
+        this.userRepository.confirmUser(user);
     }
 }
