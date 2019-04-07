@@ -2,7 +2,6 @@ package com.fmob.webcrawler.repositories;
 
 import com.fmob.webcrawler.models.User;
 import com.fmob.webcrawler.repositories.base.UserRepositoryBase;
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
