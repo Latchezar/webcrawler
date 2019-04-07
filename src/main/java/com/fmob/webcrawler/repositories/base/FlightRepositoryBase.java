@@ -10,8 +10,6 @@ public interface FlightRepositoryBase<T> {
 
     List<T> getAllByOriginAndDestination(String origin, String destination);
 
-    List<T> getAllByPrice(double price);
-
     T getByLowestPriceForOriginAndDestination(String origin, String destination);
 
 
