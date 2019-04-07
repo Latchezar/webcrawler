@@ -22,6 +22,9 @@ public class User {
     @Column(name = "destination")
     private String destination;
 
+    @Column(name = "confirmed")
+    private boolean confirmed;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "frequencyId", referencedColumnName = "frequencyID")
     private Frequency frequency;
@@ -64,5 +67,13 @@ public class User {
 
     public void setFrequency(Frequency frequency) {
         this.frequency = frequency;
+    }
+
+    public boolean isConfirmed() {
+        return confirmed;
+    }
+
+    public void setConfirmed(boolean confirmed) {
+        this.confirmed = confirmed;
     }
 }
