@@ -1,5 +1,6 @@
 package com.fmob.webcrawler.util;
 
+import com.fmob.webcrawler.models.Flight;
 import com.fmob.webcrawler.models.SentEmail;
 import com.fmob.webcrawler.models.User;
 import com.fmob.webcrawler.repositories.base.SentEmailRepositoryBase;
@@ -23,15 +24,15 @@ public class EmailService implements EmailServiceBase {
     }
 
     @Override
-    public void sendEmail(User to, String subject, String text) {
+    public void sendEmail(User to, String subject, String text, Flight flight) {
         if (to.isConfirmed()){
-            sendOfferEmail(to, subject, text);
+            sendOfferEmail(to, subject, text, flight);
         } else {
             sendConfirmationEmail(to);
         }
     }
 
-    private void sendOfferEmail(User to, String subject, String text){
+    private void sendOfferEmail(User to, String subject, String text, Flight flight){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to.getEmail());
         message.setSubject(subject);
@@ -41,6 +42,7 @@ public class EmailService implements EmailServiceBase {
         email.setEmailText(text);
         email.setTimestam(new Date().getTime());
         email.setUserId(to.getUserID());
+        email.setFlight(flight);
         this.emailRepository.saveEmail(email);
     }
 

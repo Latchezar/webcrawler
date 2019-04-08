@@ -1,5 +1,6 @@
 package com.fmob.webcrawler.service;
 
+import com.fmob.webcrawler.models.Flight;
 import com.fmob.webcrawler.models.User;
 import com.fmob.webcrawler.repositories.base.UserRepositoryBase;
 import com.fmob.webcrawler.service.base.UserServiceBase;
@@ -25,7 +26,7 @@ public class UserService implements UserServiceBase {
         user.setConfirmed(false);
         String response = this.userRepository.saveNew(user);
         if (response.equals("Success")){
-            emailService.sendEmail(user, "", "");
+            emailService.sendEmail(user, "", "", new Flight());
         }
         return response;
     }
