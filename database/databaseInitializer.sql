@@ -26,6 +26,14 @@ create table flights (
     price double
 );
 
+create table sent_emails(
+    emailId int auto_increment not null unique primary key,
+    timestamp bigint,
+    emailText text,
+    userId int,
+    foreign key (userId) references users(userId)
+);
+
 create user 'fxm_user'@'localhost' identified by 'fxm_password';
 grant all privileges on fx_mobile_crawler_db.* to 'fxm_user'@'localhost';
 flush privileges;

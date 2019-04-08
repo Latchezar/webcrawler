@@ -61,6 +61,6 @@ public class FlightService implements FlightServiceBase {
     }
 
     private boolean checkUserEligibility(User user){
-        
+        return false;
     }
 }
