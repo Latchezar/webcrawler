@@ -24,6 +24,14 @@ public class EmailService implements EmailServiceBase {
 
     @Override
     public void sendEmail(User to, String subject, String text) {
+        if (to.isConfirmed()){
+            sendOfferEmail(to, subject, text);
+        } else {
+            sendConfirmationEmail(to);
+        }
+    }
+
+    private void sendOfferEmail(User to, String subject, String text){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to.getEmail());
         message.setSubject(subject);
@@ -34,5 +42,13 @@ public class EmailService implements EmailServiceBase {
         email.setTimestam(new Date().getTime());
         email.setUserId(to.getUserID());
         this.emailRepository.saveEmail(email);
+    }
+
+    private void sendConfirmationEmail(User to){
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to.getEmail());
+        message.setSubject("Webcrawler: Confirm your email address!");
+        message.setText("Please follow the confirmation url to confirm your email address: http://localhost:8080/confirm?email=" + to.getEmail());
+        emailSender.send(message);
     }
 }
