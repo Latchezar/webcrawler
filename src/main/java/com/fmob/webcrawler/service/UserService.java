@@ -3,6 +3,7 @@ package com.fmob.webcrawler.service;
 import com.fmob.webcrawler.models.User;
 import com.fmob.webcrawler.repositories.base.UserRepositoryBase;
 import com.fmob.webcrawler.service.base.UserServiceBase;
+import com.fmob.webcrawler.util.base.EmailServiceBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,15 +12,22 @@ import java.util.List;
 @Service
 public class UserService implements UserServiceBase {
     private UserRepositoryBase<User> userRepository;
+    private EmailServiceBase emailService;
 
     @Autowired
-    public UserService(UserRepositoryBase<User> userRepository){
+    public UserService(UserRepositoryBase<User> userRepository, EmailServiceBase emailService){
         this.userRepository = userRepository;
+        this.emailService = emailService;
     }
 
     @Override
     public String saveNew(User user) {
-        return this.userRepository.saveNew(user);
+        user.setConfirmed(false);
+        String response = this.userRepository.saveNew(user);
+        if (response.equals("Success")){
+            emailService.sendEmail(user, "", "");
+        }
+        return response;
     }
 
     @Override

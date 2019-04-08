@@ -3,7 +3,6 @@ package com.fmob.webcrawler.service;
 import com.fmob.webcrawler.models.Flight;
 import com.fmob.webcrawler.models.User;
 import com.fmob.webcrawler.repositories.base.FlightRepositoryBase;
-import com.fmob.webcrawler.repositories.base.UserRepositoryBase;
 import com.fmob.webcrawler.service.base.FlightServiceBase;
 import com.fmob.webcrawler.service.base.UserServiceBase;
 import com.fmob.webcrawler.util.base.EmailServiceBase;
