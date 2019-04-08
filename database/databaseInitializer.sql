@@ -30,7 +30,7 @@ create table sent_emails(
     emailId int auto_increment not null unique primary key,
     timestamp bigint,
     emailText text,
-    userId int,
+    sentTo int,
     foreign key (userId) references users(userId)
 );
 
