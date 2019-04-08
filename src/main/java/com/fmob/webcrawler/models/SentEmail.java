@@ -21,6 +21,10 @@ public class SentEmail {
     @Column(name = "sentTo")
     private int userId;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "flightId", referencedColumnName = "flightId")
+    private Flight flight;
+
     public int getEmailId() {
         return emailId;
     }
@@ -51,5 +55,13 @@ public class SentEmail {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public Flight getFlight() {
+        return flight;
+    }
+
+    public void setFlight(Flight flight) {
+        this.flight = flight;
     }
 }

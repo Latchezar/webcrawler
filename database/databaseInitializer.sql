@@ -21,7 +21,7 @@ create table flights (
     flightID int auto_increment not null primary key,
     origin varchar(100),
     destination varchar(100),
-    flightNumber varchar(30),
+    flightNumber varchar(30) unique ,
     timestamp bigint,
     price double
 );
@@ -31,7 +31,9 @@ create table sent_emails(
     timestamp bigint,
     emailText text,
     sentTo int,
-    foreign key (userId) references users(userId)
+    flightId int,
+    foreign key (userId) references users(userId),
+    foreign key (flightId) references flights(flightID)
 );
 
 create user 'fxm_user'@'localhost' identified by 'fxm_password';

@@ -88,7 +88,8 @@ public class FlightService implements FlightServiceBase {
     private boolean isSentOffer(List<SentEmail> emails, Flight offer){
         for (SentEmail email :
                 emails) {
-            return false;
+            if (email.getFlight().getFlightId() == offer.getFlightId())
+                return false;
         }
         return true;
     }
