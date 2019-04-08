@@ -5,6 +5,7 @@ import com.fmob.webcrawler.models.User;
 import com.fmob.webcrawler.repositories.base.FlightRepositoryBase;
 import com.fmob.webcrawler.repositories.base.UserRepositoryBase;
 import com.fmob.webcrawler.service.base.FlightServiceBase;
+import com.fmob.webcrawler.service.base.UserServiceBase;
 import com.fmob.webcrawler.util.base.EmailServiceBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,13 +15,13 @@ import java.util.List;
 @Service
 public class FlightService implements FlightServiceBase {
     private FlightRepositoryBase<Flight> flightRepository;
-    private UserRepositoryBase<User> userRepository;
+    private UserServiceBase userService;
     private EmailServiceBase emailService;
 
     @Autowired
-    public FlightService(FlightRepositoryBase<Flight> flightRepository, UserRepositoryBase<User> userRepository, EmailServiceBase emailService){
+    public FlightService(FlightRepositoryBase<Flight> flightRepository, UserService userService, EmailServiceBase emailService){
         this.flightRepository = flightRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
         this.emailService = emailService;
     }
 
