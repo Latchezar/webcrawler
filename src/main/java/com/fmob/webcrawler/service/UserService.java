@@ -35,4 +35,9 @@ public class UserService implements UserServiceBase {
         }
         this.userRepository.confirmUser(user);
     }
+
+    @Override
+    public List<User> getAll() {
+        return this.userRepository.getAll();
+    }
 }

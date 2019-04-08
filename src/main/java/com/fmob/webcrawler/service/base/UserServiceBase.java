@@ -11,4 +11,6 @@ public interface UserServiceBase {
     List<User> getAllByOriginAndDestination(String origin, String destination);
 
     void confirmUser(String email);
+
+    List<User> getAll();
 }
