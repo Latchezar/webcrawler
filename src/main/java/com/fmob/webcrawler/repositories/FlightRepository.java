@@ -36,6 +36,7 @@ public class FlightRepository<T> implements FlightRepositoryBase<T> {
                 session.close();
                 return "Success";
             }catch (HibernateException e) {
+                session.close();
                 return e.getMessage();
             }
         } else {
@@ -56,6 +57,7 @@ public class FlightRepository<T> implements FlightRepositoryBase<T> {
             session.close();
             return result;
         }catch (HibernateException e) {
+            session.close();
             System.out.println(e.getMessage());
         }
         return new ArrayList<>();
@@ -78,6 +80,7 @@ public class FlightRepository<T> implements FlightRepositoryBase<T> {
             session.close();
             return result;
         }catch (HibernateException e) {
+            session.close();
             System.out.println(e.getMessage());
         }
         return new ArrayList<>();
@@ -105,6 +108,7 @@ public class FlightRepository<T> implements FlightRepositoryBase<T> {
             //there are also a few deprecated methods as using a sql query or criteria
             //another way is just using a similar methods as used here(CriteriaBuilder, CriteriaQuery and Root but using builder.function("lowest",...)
         }catch (HibernateException e) {
+            session.close();
             System.out.println(e.getMessage());
         }
         return null;

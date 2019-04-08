@@ -59,6 +59,7 @@ public class UserRepository<T> implements UserRepositoryBase<T> {
             session.close();
             return result;
         } catch (HibernateException e) {
+            session.close();
             System.out.println( "Failed: " + e.getMessage());
             return new ArrayList<>();
         }
@@ -76,6 +77,7 @@ public class UserRepository<T> implements UserRepositoryBase<T> {
                     session.getTransaction().commit();
                     session.close();
                 } catch (HibernateException e){
+                    session.close();
                     System.out.println(e.toString());
                 }
             }
@@ -101,6 +103,7 @@ public class UserRepository<T> implements UserRepositoryBase<T> {
 //            List<User> users = session.createQuery(criteria).getResultList();
 //            return (T) users.get(0);
         } catch (HibernateException e) {
+            session.close();
             System.out.println(e.toString());
         }
         return null;
@@ -119,6 +122,7 @@ public class UserRepository<T> implements UserRepositoryBase<T> {
             session.close();
             return result;
         } catch (HibernateException e){
+            session.close();
             System.out.println(e.getMessage());
             return new ArrayList<>();
         }

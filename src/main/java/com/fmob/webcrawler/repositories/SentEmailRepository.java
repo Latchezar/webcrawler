@@ -28,6 +28,7 @@ public class SentEmailRepository<T> implements SentEmailRepositoryBase<T> {
                 session.getTransaction().commit();
                 session.close();
             } catch (HibernateException e) {
+                session.close();
                 System.out.println(e.getMessage());
             }
         } else {

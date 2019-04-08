@@ -37,6 +37,7 @@ public class FrequencyRepository<T> implements FrequencyRepositoryBase<T> {
             session.close();
             return result;
         } catch (HibernateException e){
+            session.close();
             System.out.println(e.getMessage());
             return new ArrayList<>();
         }
@@ -52,6 +53,7 @@ public class FrequencyRepository<T> implements FrequencyRepositoryBase<T> {
             session.close();
             return (T) frequency;
         } catch (HibernateException e) {
+            session.close();
             System.out.println(e.getMessage());
         }
         return null;
@@ -72,6 +74,7 @@ public class FrequencyRepository<T> implements FrequencyRepositoryBase<T> {
             session.close();
             return (T) frequency;
         } catch (HibernateException e) {
+            session.close();
             System.out.println(e.getMessage());
         }
         return null;
