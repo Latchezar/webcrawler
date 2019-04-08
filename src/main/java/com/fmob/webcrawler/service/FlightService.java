@@ -46,5 +46,21 @@ public class FlightService implements FlightServiceBase {
     }
 
     private void checkOffers(){
+        List<User> users = this.userService.getAll();
+        for (User user :
+                users) {
+            boolean isEligibleUserForEmail = checkUserEligibility(user);
+            if (isEligibleUserForEmail) {
+                Flight offer = getBestOfferForUser(user);
+            }
+        }
+    }
+
+    private Flight getBestOfferForUser(User user){
+        return this.flightRepository.getByLowestPriceForOriginAndDestination(user.getOrigin(), user.getDestination());
+    }
+
+    private boolean checkUserEligibility(User user){
+        
     }
 }
