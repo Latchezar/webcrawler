@@ -8,7 +8,7 @@ Offer model: <br />
 {<br />
 	"origin": "sof",             //flight origin (string)<br />
 	"destination": "lon",        //flight destination (string)<br />
-	"flightNumber": "sfln2",     //flightNumber (string(unique))<br />
+	"flightNumber": "sfln2",     //flightNumber (string)<br />
 	"timestamp": 1561892400000,  //milliseconds of the flight time (long - 64bit number)<br />
 	"price": 40.50               //price of the offer (double)<br />
 }<br />
