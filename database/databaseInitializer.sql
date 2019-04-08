@@ -21,7 +21,7 @@ create table flights (
     flightID int auto_increment not null primary key,
     origin varchar(100),
     destination varchar(100),
-    flightNumber varchar(30) unique ,
+    flightNumber varchar(30),
     timestamp bigint,
     price double
 );
