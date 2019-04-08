@@ -10,6 +10,7 @@ import com.fmob.webcrawler.util.base.EmailServiceBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -52,6 +53,10 @@ public class FlightService implements FlightServiceBase {
             boolean isEligibleUserForEmail = checkUserEligibility(user);
             if (isEligibleUserForEmail) {
                 Flight offer = getBestOfferForUser(user);
+                String dateString = new Date(offer.getTimestamp()).toString();
+                String emailText = "We have a new offer for you: \n Origin: " + offer.getOrigin() + "\n Destination: " + offer.getDestination() + "\n Price: " + offer.getPrice() + "\n Date: " + dateString + "\n Flight number: " + offer.getFlightNumber();
+                String subject = "Webcrawler: New offer!";
+                this.emailService.sendEmail(user, subject, emailText);
             }
         }
     }
