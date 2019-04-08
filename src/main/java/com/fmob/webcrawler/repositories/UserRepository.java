@@ -105,4 +105,22 @@ public class UserRepository<T> implements UserRepositoryBase<T> {
         }
         return null;
     }
+
+    @Override
+    public List<T> getAll() {
+        Session session = sessionFactory.openSession();
+        try {
+            session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<User> criteria = builder.createQuery(User.class);
+            criteria.from(User.class);
+            List result = session.createQuery(criteria).getResultList();
+            session.getTransaction().commit();
+            session.close();
+            return result;
+        } catch (HibernateException e){
+            System.out.println(e.getMessage());
+            return new ArrayList<>();
+        }
+    }
 }

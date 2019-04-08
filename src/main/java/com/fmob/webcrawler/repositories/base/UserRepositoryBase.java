@@ -11,4 +11,6 @@ public interface UserRepositoryBase<T> {
     void confirmUser(T user);
 
     T getUserByEmail(String email);
+
+    List<T> getAll();
 }
