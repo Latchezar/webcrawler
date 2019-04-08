@@ -50,7 +50,7 @@ public class EmailService implements EmailServiceBase {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to.getEmail());
         message.setSubject("Webcrawler: Confirm your email address!");
-        message.setText("Please follow the confirmation url to confirm your email address: http://localhost:8080/confirm?email=" + to.getEmail());
+        message.setText("Please follow the confirmation url to confirm your email address: http://78.90.64.155:8080/confirm?email=" + to.getEmail());
         emailSender.send(message);
     }
 }
