@@ -62,7 +62,7 @@ public class FlightService implements FlightServiceBase {
                 String dateString = new Date(offer.getTimestamp()).toString();
                 String emailText = "We have a new offer for you: \n Origin: " + offer.getOrigin() + "\n Destination: " + offer.getDestination() + "\n Price: " + offer.getPrice() + "\n Date: " + dateString + "\n Flight number: " + offer.getFlightNumber();
                 String subject = "Webcrawler: New offer!";
-                this.emailService.sendEmail(user, subject, emailText);
+                this.emailService.sendEmail(user, subject, emailText, offer);
             } else {
                 System.out.println("User " + user.getEmail() + " is not yet eligible for a new offer");
             }
