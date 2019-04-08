@@ -1,6 +1,7 @@
 package com.fmob.webcrawler.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {
@@ -29,6 +30,10 @@ public class User {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "frequencyId", referencedColumnName = "frequencyID")
     private Frequency frequency;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "sentTo", referencedColumnName = "userId")
+    private List<SentEmail> sentEmails;
 
     public int getUserID() {
         return userID;
@@ -76,5 +81,13 @@ public class User {
 
     public void setConfirmed(boolean confirmed) {
         this.confirmed = confirmed;
+    }
+
+    public List<SentEmail> getSentEmails() {
+        return sentEmails;
+    }
+
+    public void setSentEmails(List<SentEmail> sentEmails) {
+        this.sentEmails = sentEmails;
     }
 }

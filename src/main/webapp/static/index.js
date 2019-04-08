@@ -1,5 +1,5 @@
 function successfulSubmittion(email){
-    console.log("please confirm you email address - http://localhost:8080/confirm?email=" + email);
+    console.log("please confirm you email address!");
 }
 
 function userFormSubmit(){
